@@ -19,10 +19,9 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
 
- 
+    [SerializeField] GameObject gameOverScreen;
 
-    // Start is called before the first frame update
-    void Start()
+     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
@@ -71,5 +69,6 @@ public class PlayerController : MonoBehaviour
         int randAnim = Random.Range(1, 3);
         playerAnim.SetBool("Death_b", true);
         playerAnim.SetInteger("DeathType_int", randAnim);
+        gameOverScreen.SetActive(true);
     }
 }
